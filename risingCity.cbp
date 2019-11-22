@@ -80,19 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/meanmachin3/github/COP5536/risingCity/RBTree.cpp">
-			<Option target="risingCity"/>
-		</Unit>
-		<Unit filename="/Users/meanmachin3/github/COP5536/risingCity/RBTree.h">
-			<Option target="risingCity"/>
-		</Unit>
 		<Unit filename="/Users/meanmachin3/github/COP5536/risingCity/main.cpp">
-			<Option target="risingCity"/>
-		</Unit>
-		<Unit filename="/Users/meanmachin3/github/COP5536/risingCity/minHeap.cpp">
-			<Option target="risingCity"/>
-		</Unit>
-		<Unit filename="/Users/meanmachin3/github/COP5536/risingCity/minHeap.h">
 			<Option target="risingCity"/>
 		</Unit>
 		<Unit filename="/Users/meanmachin3/github/COP5536/risingCity/CMakeLists.txt">

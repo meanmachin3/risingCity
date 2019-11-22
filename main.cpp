@@ -5,7 +5,7 @@
 #include <sstream>
 
 std::ofstream fout;
-#define MAX 2001
+#define MAX_SIZE 2001
 #define WORK_LIMIT 5
 
 #include "minHeap.hpp"

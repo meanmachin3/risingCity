@@ -47,3 +47,8 @@ risingCity.dSYM/
 CMakeLists.txt
 CMakeCache.txt
 cmake_install.cmake
+output.txt
+sample2.txt
+test
+test.dSYM/
+test_output_file.txt

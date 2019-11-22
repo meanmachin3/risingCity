@@ -51,7 +51,3 @@ public:
 
     void transplant(Node *, Node *, Node *);
 };
-
-RBTree::RBTree() {
-    root = NULL;
-}

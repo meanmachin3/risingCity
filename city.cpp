@@ -1,6 +1,6 @@
 City::City() {
     global_time = 0;
-    heap = new Heap(MAX);
+    heap = new Heap(MAX_SIZE);
     rbTree = new RBTree;
 //    time_to_work = 0;
 //    working_on = nullptr;

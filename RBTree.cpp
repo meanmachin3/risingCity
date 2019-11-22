@@ -1,4 +1,11 @@
 /*!
+ * Constructor
+ */
+RBTree::RBTree() {
+    root = NULL;
+}
+
+/*!
  *To search a given key in Binary Search Tree, we first compare it with root,
  * if the key is present at root, we return root. If key is greater than root’s key, 
  * we recur for right subtree of root node. Otherwise we recur for left subtree.
@@ -38,7 +45,7 @@ void inorder(Node *root, int low, int high, std::vector <std::string> &res) {
     if (root->building_num <= high && root->building_num >= low) {
         Building *correspondingBuilding = root->twin;
         std::stringstream ss;
-        ss << "(" << root->building_num << "," << correspondingBuilding->executed_time << ","
+        ss << "(" << correspondingBuilding->building_num << "," << correspondingBuilding->executed_time << ","
            << correspondingBuilding->total_time << ")";
         res.push_back(ss.str());
     }
@@ -246,6 +253,7 @@ Node *RBTree::insert(const int &building_num) {
 void RBTree::inorder(int low, int high) {
     std::vector <std::string> res;
     ::inorder(root, low, high, res);
+    std::sort(res.begin(), res.end());
     std::string s;
     for (size_t i = 0; i < res.size(); ++i) {
         s += res[i];

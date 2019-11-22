@@ -23,10 +23,6 @@ public:
 
     int workOnBuilding(int);
 
-    int left_child(int);
-
-    int right_child(int);
-
 //    Building *buildingInProcess();
 //
 //    void incrementGlobalCounterBy(int);
