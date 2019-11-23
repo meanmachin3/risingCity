@@ -1,6 +1,6 @@
 <h1 align="center"> Rising City </h1> <br>
 
-[![Actions Status](https://github.com/meanmachin3/risingCity/workflows/Test/badge.svg)](https://github.com/{owner}/{repo}/actions)
+[![Actions Status](https://github.com/meanmachin3/risingCity/workflows/Test/badge.svg)](https://github.com/meanmachin3/risingCity/actions)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
