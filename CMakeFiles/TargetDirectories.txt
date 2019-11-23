@@ -1,4 +1,0 @@
-/Users/meanmachin3/github/COP5536/risingCity/CMakeFiles/rebuild_cache.dir
-/Users/meanmachin3/github/COP5536/risingCity/CMakeFiles/edit_cache.dir
-/Users/meanmachin3/github/COP5536/risingCity/CMakeFiles/test.dir
-/Users/meanmachin3/github/COP5536/risingCity/CMakeFiles/risingCity.dir

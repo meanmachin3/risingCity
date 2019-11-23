@@ -40,7 +40,7 @@
 
 # VS Code
 .vscode/
-
+CMakeFiles/
 main.dSYM/
 risingCity.dSYM/
 CMakeCache.txt
@@ -49,3 +49,4 @@ sample2.txt
 test
 test.dSYM/
 test_output_file.txt
+risingCity
