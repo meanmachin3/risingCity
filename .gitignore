@@ -30,6 +30,7 @@
 *.exe
 *.out
 *.app
+*.cbp
 
 # Clion
 .idea/
@@ -37,16 +38,12 @@
 # Misc
 .DS_Store
 
-CMakeFiles/
-
 # VS Code
 .vscode/
 
 main.dSYM/
 risingCity.dSYM/
-CMakeLists.txt
 CMakeCache.txt
-cmake_install.cmake
 output.txt
 sample2.txt
 test
