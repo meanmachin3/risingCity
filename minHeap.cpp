@@ -45,7 +45,7 @@ Building *Heap::insert(int building_num, int executed_time, int total_time, Node
     while (insert_pos > 1) {
         if (root[insert_pos].executed_time <= root[insert_pos / 2].executed_time) {
             if (root[insert_pos].executed_time == root[insert_pos / 2].executed_time) {
-                if (root[insert_pos].building_num > root[insert_pos / 2].building_num) {
+                if (root[insert_pos].building_num < root[insert_pos / 2].building_num) {
                     swap(&root[insert_pos], &root[insert_pos / 2]);
                     insert_pos = insert_pos / 2;
                 } else {
@@ -86,9 +86,9 @@ void Heap::heapify() {
             }
         }
 
-        if (root[parent].executed_time <= root[x].executed_time) {
+        if (root[parent].executed_time < root[x].executed_time) {
             if (root[parent].executed_time == root[x].executed_time) {
-                if (root[parent].building_num > root[x].building_num) {
+                if (root[parent].building_num < root[x].building_num) {
                     swap(&root[parent], &root[x]);
                     x = parent;
                 } else {
