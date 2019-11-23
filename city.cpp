@@ -3,8 +3,9 @@ City::City() {
     global_time = 0;
     heap = new Heap(MAX_SIZE);
     rbTree = new RBTree;
-//    working_on = nullptr;
-//    time_to_work = 0;
+    current_building = nullptr;
+    current_building_finish_time = 0;
+    current_period_finish_time = 0;
 }
 
 int City::getGlobalTime() {
@@ -45,6 +46,51 @@ void City::updateGlobalTimer(int current_time) {
 
     }
 }
+
+void City::workOnBuilding() {
+    if (current_building == nullptr) {
+        if (hasBuildingToWorkOn()) {
+            current_building = heap->removeMin();
+            current_period_finish_time = global_time + 5;
+            current_building_finish_time = global_time + current_building->total_time - current_building->executed_time - 1;
+        } else {
+            return;
+        }
+    } else {
+        if (current_building_finish_time <= current_period_finish_time) {
+            if (global_time == current_building_finish_time) {
+                rbTree->delete_node(current_building->twin);
+                current_building = nullptr;
+                current_building_finish_time = 0;
+                current_period_finish_time = 0;
+                workOnBuilding();
+            }
+        } else {
+            if (global_time == current_period_finish_time) {
+                heap->insert(
+                        current_building->building_num,
+                        current_building->executed_time,
+                        current_building->total_time,
+                        current_building->twin
+                        );
+                heap->heapify();
+                current_building = nullptr;
+                current_building_finish_time = 0;
+                current_period_finish_time = 0;
+                workOnBuilding();
+            }
+        }
+    }
+}
+
+void City::incremenetGlobalTimer() {
+    global_time++;
+    if (current_building) {
+        current_building->executed_time += 1;
+    }
+}
+
+
 
 /*!
  * Check if there's any building to work on.

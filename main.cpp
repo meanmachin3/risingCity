@@ -34,7 +34,11 @@ int main(int argc, char *argv[]) {
     while (getline(file, line, '\n')) {
         // Tokenize the given string
         std::vector<std::string> tokens = parse_line(line);
-        city.updateGlobalTimer(stoi(tokens[0]));
+//        city.updateGlobalTimer(stoi(tokens[0]));
+        while(stoi(tokens[0]) != city.getGlobalTime()) {
+            city.workOnBuilding();
+            city.incremenetGlobalTimer();
+        }
         if (tokens[1] == "Insert") city.insert(stoi(tokens[2]), 0,  stoi(tokens[3]));
         else if (tokens[1] == "PrintBuilding") {
             if (tokens.size() == 3) {

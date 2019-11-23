@@ -7,8 +7,9 @@ private:
     Heap *heap;
 public:
     City();
-//    int time_to_work;
-//    Building *working_on;
+    int current_period_finish_time;
+    int current_building_finish_time;
+    Building *current_building;
     void insert(int, int, int );
 
     void printBuilding(int);
@@ -30,5 +31,10 @@ public:
 //    Building *removeMin();
 //
 //    int getTimeWorkedOnBuilding();
+    void updateGlobalTimer2(int current_time);
+
+    void workOnBuilding();
+
+    void incremenetGlobalTimer();
 };
 #endif //RISINGCITY_CITY_HPP

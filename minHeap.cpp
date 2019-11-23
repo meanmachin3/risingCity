@@ -91,9 +91,10 @@ void Heap::heapify() {
                 if (root[parent].building_num > root[x].building_num) {
                     swap(&root[parent], &root[x]);
                     x = parent;
-                } else {
-                    break;
                 }
+//                else {
+//                    break;
+//                }
             }
             swap(&root[x], &root[parent]);
             x = parent;
@@ -116,10 +117,12 @@ struct Building *Heap::removeMin() {
     removed->building_num = root[top].building_num;
     removed->executed_time = root[top].executed_time;
     removed->total_time = root[top].total_time;
+    removed->twin = root[top].twin;
 
     root[top].building_num = root[element_added].building_num;
     root[top].executed_time = root[element_added].executed_time;
     root[top].total_time = root[element_added].total_time;
+    root[top].twin = root[element_added].twin;
 
     element_added--;
     heapify();
