@@ -43,9 +43,10 @@ Wayne Construction works on one building at a time. When it is time to select a 
 
 - Clone or download the repo using `git clone https://github.com/meanmachin3/risingCity.git`
 - `make` to compile source
-- `make clean` to clean the compiled binaries
 - `./risingCity input.txt` to run the compiled binary
+- `./test` to run test cases
 - The program output will be placed in output.txt
+- `make clean` to clean the compiled binaries
 
 ## License
 
