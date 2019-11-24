@@ -1,0 +1,418 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\date{}
+
+\begin{document}
+
+Project Report
+
+\hypertarget{table-of-contents}{%
+\subsection{Table of Contents}\label{table-of-contents}}
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{table-of-contents}{Table of Contents}
+\item
+  \protect\hyperlink{maincpp}{Main.cpp}
+\item
+  \protect\hyperlink{city-implementation}{City Implementation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{city-data-structure}{City Data Structure}
+  \item
+    \protect\hyperlink{city-interface}{City Interface}
+  \end{itemize}
+\item
+  \protect\hyperlink{min-heap}{Min Heap}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{min-heap-data-structure}{Min Heap Data Structure}
+  \item
+    \protect\hyperlink{min-heap-interface}{Min Heap Interface}
+  \end{itemize}
+\item
+  \protect\hyperlink{red-black-tree}{Red Black Tree}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \protect\hyperlink{red-black-tree-node-structure}{Red black Tree
+    Node Structure}
+  \item
+    \protect\hyperlink{red-black-tree-interface}{Red Black Tree
+    Interface}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{main.cpp}{%
+\subsection{Main.cpp}\label{main.cpp}}
+
+\hypertarget{city-implementation}{%
+\subsection{City Implementation}\label{city-implementation}}
+
+\hypertarget{city-data-structure}{%
+\subsubsection{City Data Structure}\label{city-data-structure}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ global_time;}
+\NormalTok{RBTree *rbTree;}
+\NormalTok{Heap *heap;}
+\end{Highlighting}
+\end{Shaded}
+
+City contains \texttt{global\_time} that keeps track of the global
+counter. There's a pointer reference to Red black tree( \texttt{rbTree})
+and a min heap(\texttt{heap}) to interact with respective data structure
+
+\hypertarget{city-interface}{%
+\subsubsection{City Interface}\label{city-interface}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ insert(}\DataTypeTok{int}\NormalTok{ building_num, }\DataTypeTok{int}\NormalTok{ executed_time, }\DataTypeTok{int}\NormalTok{ total_time);}
+\end{Highlighting}
+\end{Shaded}
+
+Accepts \texttt{building\_num}, \texttt{executed\_time} \&
+\texttt{total\_time} and inserts it into min heap and red black tree.
+Acts as an interface between the input and data structures(min heap and
+red black).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ printBuilding(}\DataTypeTok{int}\NormalTok{ buildingNum);}
+\end{Highlighting}
+\end{Shaded}
+
+Accepts \texttt{buildingNum} to be printed. Looks up for the given
+building number and prints it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ printBuilding(}\DataTypeTok{int}\NormalTok{ from, }\DataTypeTok{int}\NormalTok{ to);}
+\end{Highlighting}
+\end{Shaded}
+
+Accepts a range from \texttt{from} to \texttt{to} of building number to
+be printed. Looks up for the given range and prints it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ updateGlobalTimer(}\DataTypeTok{int}\NormalTok{ time);}
+\end{Highlighting}
+\end{Shaded}
+
+Setter to modify the \texttt{global\_time} by given \texttt{time}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{bool}\NormalTok{ hasBuildingToWorkOn();}
+\end{Highlighting}
+\end{Shaded}
+
+Checks if there any building that could be worked on i.e Checks for the
+heap size. Returns true if there are more than more element inside the
+min heap data structure otherwise false.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ getGlobalTime();}
+\end{Highlighting}
+\end{Shaded}
+
+Getter for \texttt{global\_time}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ workOnBuilding(}\DataTypeTok{int}\NormalTok{ time);}
+\end{Highlighting}
+\end{Shaded}
+
+Selects the smallest element from the min heap and either works till the
+building is completed or for given \texttt{time} period.
+
+\hypertarget{min-heap}{%
+\subsection{Min Heap}\label{min-heap}}
+
+\hypertarget{min-heap-data-structure}{%
+\subsubsection{Min Heap Data Structure}\label{min-heap-data-structure}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{struct}\NormalTok{ Building\{}
+    \DataTypeTok{int}\NormalTok{ building_num;}
+    \DataTypeTok{int}\NormalTok{ executed_time;}
+    \DataTypeTok{int}\NormalTok{ total_time;}
+    \KeywordTok{struct}\NormalTok{ Node* twin;}
+\NormalTok{\};}
+\end{Highlighting}
+\end{Shaded}
+
+Each element in min heap is an instance of \texttt{Building}.
+\texttt{Building} data structure contains \texttt{building\_num},
+\texttt{executed\_time} \& \texttt{total\_time}. \texttt{executed\_time}
+denotes for how long the building was worked on. \texttt{twin} maintains
+a pointer reference to corresponding node in red black tree.
+
+\hypertarget{min-heap-interface}{%
+\subsubsection{Min Heap Interface}\label{min-heap-interface}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Building* insert(}\DataTypeTok{int}\NormalTok{ building_num, }\DataTypeTok{int}\NormalTok{ executed_time, }\DataTypeTok{int}\NormalTok{ total_time, Node* rbt_twin);}
+\end{Highlighting}
+\end{Shaded}
+
+Creates a new nodes inside the min heap using \texttt{building\_num},
+\texttt{executed\_time}, \texttt{total\_time}. \texttt{rbt\_twin} is the
+reference to node in red black tree.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Building* removeMin();}
+\end{Highlighting}
+\end{Shaded}
+
+Removes the minimum element from the min heap.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ swap(Building *, Building *);}
+\end{Highlighting}
+\end{Shaded}
+
+Swaps two building nodes, replacing their content with each other.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ heapify();}
+\end{Highlighting}
+\end{Shaded}
+
+Used or maintain order of min heap. If there's any violation wrt to min
+heap, building node with minimum value is taken as root.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ updateMin(}\DataTypeTok{int}\NormalTok{ time);}
+\end{Highlighting}
+\end{Shaded}
+
+Increment the minimum node's \texttt{executed\_time} with the give
+amount of \texttt{time}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ left_child(}\DataTypeTok{int}\NormalTok{ i);}
+\end{Highlighting}
+\end{Shaded}
+
+Returns left child index.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ right_child(}\DataTypeTok{int}\NormalTok{ i);}
+\end{Highlighting}
+\end{Shaded}
+
+Returns left child index.
+
+\hypertarget{red-black-tree}{%
+\subsection{Red Black Tree}\label{red-black-tree}}
+
+\hypertarget{red-black-tree-node-structure}{%
+\subsubsection{Red black Tree Node
+Structure}\label{red-black-tree-node-structure}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{struct}\NormalTok{ Node \{}
+    \DataTypeTok{int}\NormalTok{ building_num;}
+    \DataTypeTok{bool}\NormalTok{ color;}
+\NormalTok{    Node *left;}
+\NormalTok{    Node *right;}
+\NormalTok{    Node *parent;}
+\NormalTok{    Building *twin;}
+
+\NormalTok{    Node(}\DataTypeTok{int}\NormalTok{ building_num) \{}
+        \KeywordTok{this}\NormalTok{->building_num = building_num;}
+\NormalTok{        parent = left = right = NULL;}
+\NormalTok{    \}}
+\NormalTok{\};}
+\end{Highlighting}
+\end{Shaded}
+
+Each instance of \texttt{Node} is data in red black. \texttt{Node}
+consists of \texttt{building\_num} which would be unique within the data
+structure. \texttt{color} refers to the type of node i.e \texttt{RED} or
+\texttt{BLACK}. \texttt{left} and \texttt{right} node refers to the left
+and right child of the red black tree. \texttt{parent} pointer maintains
+reference to it's parent node. \texttt{twin} is used to store pointer
+reference to corresponding node in min heap.
+
+\hypertarget{red-black-tree-interface}{%
+\subsubsection{Red Black Tree
+Interface}\label{red-black-tree-interface}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Node *insert(}\AttributeTok{const} \DataTypeTok{int}\NormalTok{ &n);}
+\end{Highlighting}
+\end{Shaded}
+
+Inserts a node with building num \texttt{n} to Red Black Tree. Time
+Complexity: \texttt{O(log\ n)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Node *search(}\DataTypeTok{int}\NormalTok{ building_num);}
+\end{Highlighting}
+\end{Shaded}
+
+Looks up a node with building num \texttt{building\_num} to Red Black
+Tree. Time Complexity: \texttt{O(log\ n)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{std::}\NormalTok{string join(}\AttributeTok{const} \BuiltInTok{std::}\NormalTok{vector<}\BuiltInTok{std::}\NormalTok{string> & arr, }\AttributeTok{const} \DataTypeTok{char}\NormalTok{ * delim);}
+\end{Highlighting}
+\end{Shaded}
+
+Method to join an array \texttt{arr} with delimiter \texttt{delim}. E.g:
+\texttt{join(\{"Hi",\ "Hello"\},\ \textquotesingle{},\textquotesingle{})}
+returns \texttt{Hi,\ Hello}. Time Complexity: \texttt{O(n)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ inorder(}\DataTypeTok{int}\NormalTok{ low, }\DataTypeTok{int}\NormalTok{ high);}
+\end{Highlighting}
+\end{Shaded}
+
+Runs an inorder traversal on tree and looks up node with building number
+between \texttt{low} and \texttt{high}. Time complexity:
+\texttt{O(log\ n\ +\ (high\ -\ low))}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ delete_node(Node *node);}
+\end{Highlighting}
+\end{Shaded}
+
+Deletes the given node from red black tree. Time Complexity:
+\texttt{O(log\ n)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ fix(Node *& node);}
+\end{Highlighting}
+\end{Shaded}
+
+Fix violation in red black tree due to \texttt{node} on insert or
+delete. Time Complexity: \texttt{O(log\ n)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ right_rotate(Node *);}
+\end{Highlighting}
+\end{Shaded}
+
+Performs right rotation in red black tree. Time Complexity:
+\texttt{O(1)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{void}\NormalTok{ left_rotate(Node *);}
+\end{Highlighting}
+\end{Shaded}
+
+Performs left rotation in red black tree. Time Complexity: \texttt{O(1)}
+
+\end{document}

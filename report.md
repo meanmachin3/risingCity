@@ -17,6 +17,29 @@
 
 ## Main.cpp
 
+```javascript
+    while(lines in file) {
+        tokens = parse(line);
+        while(globalTimer != currentTime) {
+            process nodes in minheap
+            updateGlobalTimer();
+        }
+        if (command == "insert") {
+            insert(building_num);
+        } else if (command == "printbuilding" && argument_count == 1) {
+            print(building_num);
+        } else if (commmand == "printbuilding" && argument_count == 2) {
+            print(from, to); // Print all buildings with number in between from and to
+        }
+    }
+```
+
+>> The algorithm presents are very brief overiew of the implementation of risingCity. The idea is to process it line by and line and taken action on the read line.
+>> Once the line is read, look for the time present in the currently read line and check if it is greater than the `global_timer`. Find the difference between the currently read time and `global_timer`. Find out the time required to complete the building with minimum `executed_time`, if it requires more than `5` days then work on it for `5` days else work on that building for `total_time` - `executed_time` and update `global_timer` accordingly.
+>> Once the building has been processed, read the command that is to be executed. If the command is `Insert` then push the building into the min heap and red black while maintain the heap & tree structure.
+>> If the line that's being read is a `PrintBuilding` command, check for the number of argument it contains. If the `PrintBuilding` command contains only one argument, the print the respective building else if it contains 2 arguments, print the building nodes between the give range.
+>> When all the lines are processed from the file input, check if there's any more building to be worked on in the min heap. If there is any, increment `global_counter` by an arbitrary amount (100 in this case) and repeat the above steps again.
+
 ## City Implementation
 
 ### City Data Structure
