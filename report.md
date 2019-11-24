@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
+- [Main.cpp](#maincpp)
 - [City Implementation](#city-implementation)
   - [City Data Structure](#city-data-structure)
   - [City Interface](#city-interface)
@@ -13,7 +14,8 @@
 - [Red Black Tree](#red-black-tree)
   - [Red black Tree Node Structure](#red-black-tree-node-structure)
   - [Red Black Tree Interface](#red-black-tree-interface)
-- [Main.cpp](#maincpp)
+
+## Main.cpp
 
 ## City Implementation
 
@@ -90,37 +92,115 @@ Each element in min heap is an instance of `Building`. `Building` data structure
 ### Min Heap Interface
 
 ```cpp
-Building* insert(int, int, int, Node*);
+Building* insert(int building_num, int executed_time, int total_time, Node* rbt_twin);
 ```
+
+Creates a new nodes inside the min heap using `building_num`, `executed_time`, `total_time`. `rbt_twin` is the reference to node in red black tree.
 
 ```cpp
 Building* removeMin();
 ```
 
+Removes the minimum element from the min heap.
+
 ```cpp
 void swap(Building *, Building *);
 ```
+
+Swaps two building nodes, replacing their content with each other.
 
 ```cpp
 void heapify();
 ```
 
-```cpp
-void updateMin(int);
-```
+Used or maintain order of min heap. If there's any violation wrt to min heap, building node with minimum value is taken as root.
 
 ```cpp
-int left_child(int);
+void updateMin(int time);
 ```
 
+Increment the minimum node's `executed_time` with the give amount of `time`.
+
 ```cpp
-int right_child(int);
+int left_child(int i);
 ```
+
+Returns left child index.
+
+```cpp
+int right_child(int i);
+```
+
+Returns left child index.
 
 ## Red Black Tree
 
 ### Red black Tree Node Structure
 
+```cpp
+struct Node {
+    int building_num;
+    bool color;
+    Node *left;
+    Node *right;
+    Node *parent;
+    Building *twin;
+
+    Node(int building_num) {
+        this->building_num = building_num;
+        parent = left = right = NULL;
+    }
+};
+```
+
+Each instance of `Node` is data in red black. `Node` consists of `building_num` which would be unique within the data structure. `color` refers to the type of node i.e `RED` or `BLACK`. `left` and `right` node refers to the left and right child of the red black tree. `parent` pointer maintains reference to it's parent node. `twin` is used to store pointer reference to corresponding node in min heap.
+
 ### Red Black Tree Interface
 
-## Main.cpp
+```cpp
+Node *insert(const int &n);
+```
+
+Inserts a node with building num `n` to Red Black Tree. Time Complexity: `O(log n)`
+
+```cpp
+Node *search(int building_num);
+```
+
+Looks up a node with building num `building_num` to Red Black Tree. Time Complexity: `O(log n)`
+
+```cpp
+std::string join(const std::vector<std::string> & arr, const char * delim);
+```
+
+Method to join an array `arr` with delimiter `delim`. E.g: `join({"Hi", "Hello"}, ',')` returns `Hi, Hello`. Time Complexity: `O(n)`
+
+```cpp
+void inorder(int low, int high);
+```
+
+Runs an inorder traversal on tree and looks up node with building number between `low` and `high`. Time complexity: `O(log n + (high - low))`
+
+```cpp
+void delete_node(Node *node);
+```
+
+Deletes the given node from red black tree. Time Complexity: `O(log n)`
+
+```cpp
+void fix(Node *& node);
+```
+
+Fix violation in red black tree due to `node` on insert or delete. Time Complexity: `O(log n)`
+
+```cpp
+void right_rotate(Node *);
+```
+
+Performs right rotation in red black tree. Time Complexity: `O(1)`
+
+```cpp
+void left_rotate(Node *);
+```
+
+Performs left rotation in red black tree. Time Complexity: `O(1)`

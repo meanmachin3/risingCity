@@ -100,139 +100,6 @@ Node *insert(Node *root, Node *ptr) {
 }
 
 /*!
- * Left rotation
- * @param root
- * @param ptr
- */
-void RBTree::rotate_left(Node *&root, Node *&ptr) {
-    Node *ptr_right = ptr->right;
-
-    ptr->right = ptr_right->left;
-
-    if (ptr_right->left != NULL) {
-        ptr->right->parent = ptr;
-    }
-
-    ptr_right->parent = ptr->parent;
-
-    if (ptr->parent == NULL) {
-        root = ptr_right;
-    } else if (ptr == ptr->parent->left) {
-        ptr->parent->left = ptr_right;
-    } else {
-        ptr->parent->right = ptr_right;
-    }
-    ptr_right->left = ptr;
-    ptr->parent = ptr_right;
-}
-
-/*!
- * Right rotation
- * @param root
- * @param ptr
- */
-void RBTree::rotate_right(Node *&root, Node *&ptr) {
-    Node *ptr_left = ptr->left;
-    ptr->left = ptr_left->right;
-
-    if (ptr->left != NULL)
-        ptr->left->parent = ptr;
-
-    ptr_left->parent = ptr->parent;
-
-    if (ptr->parent == NULL)
-        root = ptr_left;
-
-    else if (ptr == ptr->parent->left)
-        ptr->parent->left = ptr_left;
-
-    else
-        ptr->parent->right = ptr_left;
-
-    ptr_left->right = ptr;
-    ptr->parent = ptr_left;
-}
-
-
-/*!
- *
- * @param root
- * @param ptr
- */
-void RBTree::fixtree(Node *&root, Node *&ptr) {
-    Node *parent_ptr = NULL;
-    Node *grand_parent_ptr = NULL;
-
-    while ((ptr != root) && (ptr->color != BLACK) && (ptr->parent->color == RED)) {
-
-        grand_parent_ptr = ptr->parent->parent;
-        parent_ptr = ptr->parent;
-        // when X=L
-        if (parent_ptr == grand_parent_ptr->left) {
-
-            Node *uncle_ptr = grand_parent_ptr->right;
-
-            // when r = red ie uncle red
-            if (uncle_ptr != NULL && uncle_ptr->color == RED) {
-                parent_ptr->color = BLACK;
-                grand_parent_ptr->color = RED;
-                uncle_ptr->color = BLACK;
-                ptr = grand_parent_ptr;
-            } else {
-                // when Y = R
-                if (ptr == parent_ptr->right) {
-                    rotate_left(root, parent_ptr);
-                    ptr = parent_ptr;
-                    parent_ptr = ptr->parent;
-                }
-
-                // when Y = L
-                rotate_right(root, grand_parent_ptr);
-                {
-                    bool clr;
-                    clr = parent_ptr->color;
-                    parent_ptr->color = grand_parent_ptr->color;
-                    grand_parent_ptr->color = clr;
-                }
-                ptr = parent_ptr;
-            }
-        }
-
-            // when X = R
-        else {
-            Node *uncle_ptr = grand_parent_ptr->left;
-
-            //when r=red
-            if ((uncle_ptr != NULL) && (uncle_ptr->color == RED)) {
-                parent_ptr->color = BLACK;
-                uncle_ptr->color = BLACK;
-                grand_parent_ptr->color = RED;
-                ptr = grand_parent_ptr;
-            } else {
-                //when Y = L
-                if (ptr == parent_ptr->left) {
-                    rotate_right(root, parent_ptr);
-                    ptr = parent_ptr;
-                    parent_ptr = ptr->parent;
-                }
-                //when Y = R
-                rotate_left(root, grand_parent_ptr);
-                {
-                    bool clr;
-                    clr = parent_ptr->color;
-                    parent_ptr->color = grand_parent_ptr->color;
-                    grand_parent_ptr->color = clr;
-                }
-
-                ptr = parent_ptr;
-            }
-        }
-    }
-    root->color = BLACK;
-}
-
-
-/*!
  *
  * @param building_num
  * @return
@@ -241,7 +108,7 @@ Node *RBTree::insert(const int &building_num) {
     Node *node = new Node(building_num);
     Node *res = node;
     root = ::insert(root, node);
-
+    fix(node);
     return res;
 }
 
@@ -285,21 +152,6 @@ Node *successor(Node *node) {
     return successor;
 }
 
-/*!
- *
- * @param root
- * @param u
- * @param v
- */
-void RBTree::transplant(Node *root, Node *u, Node *v) {
-    if (u->parent == nullptr)
-        root = v;
-    else if (u == u->parent->left)
-        u->parent->left = v;
-    else
-        u->parent->right = v;
-    v->parent = u->parent;
-}
 
 /*!
  * https://github.com/greatsharma/Red_Black_Tree/blob/master/RB_Tree.cpp
@@ -413,7 +265,6 @@ void RBTree::right_rotate(Node *p) {
  * @param node
  */
 void RBTree::fix(Node *&node) {
-    fout << "Fixing violation for: " << node->building_num << "\n";
     Node *sibling; // node's sibling
     while (node != root && node->color == BLACK) {
         if (node->parent->left == node) {

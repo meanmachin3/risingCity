@@ -15,7 +15,7 @@
 
 ## Problem Description
 
-<details><summary>Read Problem Description</summary>
+<details><summary>Click to read problem description</summary>
 <p>
 
 Wayne Enterprises is developing a new city. They are constructing many buildings and plan to use software to keep track of all buildings under construction in this new city. A building record has the following fields:
