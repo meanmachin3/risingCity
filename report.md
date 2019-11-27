@@ -34,12 +34,82 @@
     }
 ```
 
->> The algorithm presents are very brief overiew of the implementation of risingCity. The idea is to process it line by and line and taken action on the read line.
->> Once the line is read, look for the time present in the currently read line and check if it is greater than the `global_timer`. Find the difference between the currently read time and `global_timer`. Find out the time required to complete the building with minimum `executed_time`, if it requires more than `5` days then work on it for `5` days else work on that building for `total_time` - `executed_time` and update `global_timer` accordingly.
->> Once the building has been processed, read the command that is to be executed. If the command is `Insert` then push the building into the min heap and red black while maintain the heap & tree structure.
->> If the line that's being read is a `PrintBuilding` command, check for the number of argument it contains. If the `PrintBuilding` command contains only one argument, the print the respective building else if it contains 2 arguments, print the building nodes between the give range.
->> When all the lines are processed from the file input, check if there's any more building to be worked on in the min heap. If there is any, increment `global_counter` by an arbitrary amount (100 in this case) and repeat the above steps again.
+The algorithm presents are very brief overiew of the implementation of risingCity. The idea is to process it line by and line and taken action on the read line.  
+Once the line is read, look for the time present in the currently read line and check if it is greater than the `global_timer`. Find the difference between the currently read time and `global_timer`. Find out the time required to complete the building with minimum `executed_time`, if it requires more than `5` days then work on it for `5` days else work on that building for `total_time` - `executed_time` and update `global_timer` accordingly.  
+Once the building has been processed, read the command that is to be executed. If the command is `Insert` then push the building into the min heap and red black while maintain the heap & tree structure.  
+If the line that's being read is a `PrintBuilding` command, check for the number of argument it contains. If the `PrintBuilding` command contains only one argument, the print the respective building else if it contains 2 arguments, print the building nodes between the give range.  
+When all the lines are processed from the file input, check if there's any more building to be worked on in the min heap. If there is any, increment `global_counter` by an arbitrary amount (100 in this case) and repeat the above steps again.
 
+Below is representation of changes that takes place in min heap. Each node is representated using  `(building_num, executed_time, total_time)`
+
+<pre>
+0: Insert(50,100)
+
+        (50, 0, 100)
+
+45: Insert(15,200)
+
+            (15,0,200)
+            /
+        (50,45,100)
+
+46: PrintBuilding(0,100)
+
+            (15,1,200)
+            /
+        (50,45,100)
+
+90: PrintBuilding(0,100)
+
+            (15,45,200)
+            /
+        (50,45,100)
+
+92: PrintBuilding(0,100)
+
+            (50,45,100)
+            /
+        (15,47,200)
+
+93: Insert(30,50)
+
+            (30,0,50)
+            /        \
+    (50,46,100)     (15,47,200)
+
+95: PrintBuilding(0,100)
+
+            (30,2,50)
+            /       \
+    (50,46,100)     (15,47,200)
+
+96: PrintBuilding(0,100)
+
+            (30,3,50)
+            /       \
+    (50,46,100)   (15,47,200)
+
+100: PrintBuilding(0,100)
+
+            (30,7,50)
+            /      \
+    (50,46,100)   (15,47,200)
+
+135: PrintBuilding(0,100)
+
+            (30,42,50)
+            /       \
+    (50,46,100)     (15,47,200)
+
+140: Insert(40,60)
+
+            (40,45,60)
+            /       \
+    (50,46,100)     (15,47,200)
+    /
+(30,47,50)
+
+</pre>
 ## City Implementation
 
 ### City Data Structure
