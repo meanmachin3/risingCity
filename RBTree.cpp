@@ -2,7 +2,7 @@
  * Constructor
  */
 RBTree::RBTree() {
-    root = NULL;
+    root = nullptr;
 }
 
 /*!
@@ -58,7 +58,7 @@ void inorder(Node *root, int low, int high, std::vector <std::string> &res) {
 
 
 /*!
- *  Helper function that perform search for a node in RBTree and prints it.
+ * Helper function that perform search for a node in RBTree and prints it.
  * @param building_num Building to be searched for
  * @return Searched node with building_num
  */
@@ -77,7 +77,8 @@ Node *RBTree::search(int building_num) {
 
 /*!
  * https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/
- * 
+ * Insets a given node in red black tree. If the node to be inserted already exists in the red black, throws
+ * error and half the execution of current program
  * @param root Root Node of Tree
  * @param ptr Node to be inserted
  * @return Inserted element
@@ -100,9 +101,10 @@ Node *insert(Node *root, Node *ptr) {
 }
 
 /*!
+ * Helper method insert a given building in red black tree. After insertion, fixes any violation in red black tree.
  *
- * @param building_num
- * @return
+ * @param building_num: Building number of the node to be inserted
+ * @return Returns the inserted node in red black tree
  */
 Node *RBTree::insert(const int &building_num) {
     Node *node = new Node(building_num);
@@ -113,9 +115,9 @@ Node *RBTree::insert(const int &building_num) {
 }
 
 /*!
- *
- * @param low
- * @param high
+ * Helper method to print the building triplets from red black tree.
+ * @param low: lowest building number to be printed
+ * @param high: highest building number to be printed
  */
 void RBTree::inorder(int low, int high) {
     std::vector <std::string> res;
@@ -133,9 +135,9 @@ void RBTree::inorder(int low, int high) {
 }
 
 /*!
- *
- * @param node
- * @return
+ * Returns the successor node in case an element is deleted from red black tree
+ * @param node: Node to find successor of
+ * @return returns: If found returns pointer reference to the successor node else returns nullptrt
  */
 Node *successor(Node *node) {
     Node *successor = nullptr;
@@ -155,75 +157,76 @@ Node *successor(Node *node) {
 
 /*!
  * https://github.com/greatsharma/Red_Black_Tree/blob/master/RB_Tree.cpp
- * @param z
+ * Deletes a specified node from red black tre
+ * @param z: Node to be deleted from the red black tree.
  */
 void RBTree::delete_node(Node *node) {
     node = root;
-    Node *k = NULL;
-    Node *y = NULL;
-    Node *q = NULL;
+    Node *pVoid = nullptr;
+    Node *node_to_be_deleted = nullptr;
+    Node *child = nullptr;
 
     /*
-    z :- node which the user wants to delete
-    y :- node which is actually deleted
-    x :- y's child
+    node :- node which the user wants to delete
+    node_to_be_deleted :- node which is actually deleted
+    child :- node_to_be_deleted's child
     */
 
 
-    if (node->left == NULL || node->right == NULL)
-        y = node;
+    if (node->left == nullptr || node->right == nullptr)
+        node_to_be_deleted = node;
     else
-        y = successor(node);
+        node_to_be_deleted = successor(node);
 
-    if (y->left != NULL)
-        q = y->left;
+    if (node_to_be_deleted->left != nullptr)
+        child = node_to_be_deleted->left;
     else {
-        if (y->right != NULL)
-            q = y->right;
+        if (node_to_be_deleted->right != nullptr)
+            child = node_to_be_deleted->right;
         else
-            q = NULL;
+            child = nullptr;
     }
-    if (q != NULL)
-        q->parent = y->parent;
-    if (y->parent == NULL)
-        root = q;
+    if (child != nullptr)
+        child->parent = node_to_be_deleted->parent;
+    if (node_to_be_deleted->parent == nullptr)
+        root = child;
     else {
-        if (y == y->parent->left)
-            y->parent->left = q;
+        if (node_to_be_deleted == node_to_be_deleted->parent->left)
+            node_to_be_deleted->parent->left = child;
         else
-            y->parent->right = q;
+            node_to_be_deleted->parent->right = child;
     }
-    if (y != node) {
-        node->color = y->color;
-        node->building_num = y->building_num;
-        node->twin = y->twin;
+    if (node_to_be_deleted != node) {
+        node->color = node_to_be_deleted->color;
+        node->building_num = node_to_be_deleted->building_num;
+        node->twin = node_to_be_deleted->twin;
 
         struct Building *temp;
         temp = node->twin;
         temp->twin = node;
 
     }
-    if (k != NULL)
-        fix(q);
+    if (pVoid != nullptr)
+        fix(child);
 }
 
 /*!
- *
+ * Performs a left rotation on red black tree
  * @param node
  */
 void RBTree::left_rotate(Node *node) {
-    if (node->right == NULL) {
+    if (node->right == nullptr) {
         return;
     } else {
         Node *right_child = node->right;
-        if (right_child->left != NULL) {
+        if (right_child->left != nullptr) {
             node->right = right_child->left;
             right_child->left->parent = node;
         } else {
-            node->right = NULL;
+            node->right = nullptr;
         }
-        if (node->parent != NULL) right_child->parent = node->parent;
-        if (node->parent == NULL) root = right_child;
+        if (node->parent != nullptr) right_child->parent = node->parent;
+        if (node->parent == nullptr) root = right_child;
         else if (node == node->parent->left) node->parent->left = right_child;
         else node->parent->right = right_child;
         right_child->left = node;
@@ -232,37 +235,37 @@ void RBTree::left_rotate(Node *node) {
 }
 
 /*!
- *
- * @param p
+ * Performs a right rotation on red black tree
+ * @param node
  */
-void RBTree::right_rotate(Node *p) {
-    if (p->left == NULL)
+void RBTree::right_rotate(Node *node) {
+    if (node->left == nullptr)
         return;
     else {
-        Node *y = p->left;
-        if (y->right != NULL) {
-            p->left = y->right;
-            y->right->parent = p;
+        Node *y = node->left;
+        if (y->right != nullptr) {
+            node->left = y->right;
+            y->right->parent = node;
         } else
-            p->left = NULL;
-        if (p->parent != NULL)
-            y->parent = p->parent;
-        if (p->parent == NULL)
+            node->left = nullptr;
+        if (node->parent != nullptr)
+            y->parent = node->parent;
+        if (node->parent == nullptr)
             root = y;
         else {
-            if (p == p->parent->left)
-                p->parent->left = y;
+            if (node == node->parent->left)
+                node->parent->left = y;
             else
-                p->parent->right = y;
+                node->parent->right = y;
         }
-        y->right = p;
-        p->parent = y;
+        y->right = node;
+        node->parent = y;
     }
 }
 
 /*!
- *
- * @param node
+ * Fixes red black tree, in case of violation either due to insertion or deletion of any node in red black tree
+ * @param node: Node that caused violation
  */
 void RBTree::fix(Node *&node) {
     Node *sibling; // node's sibling

@@ -4,18 +4,9 @@ Heap::Heap(int size) {
 }
 
 /*!
- *
- * @param x
- */
-void Heap::updateMin(int time) {
-    root[1].executed_time += time;
-    heapify();
-}
-
-/*!
- *
- * @param a
- * @param b
+ * Swaps a two given node a & b, by swapping their building_num, executed_time, total_time and rbt node reference
+ * @param a Building number one
+ * @param b Building number two
  */
 void Heap::swap(Building *a, Building *b) {
     std::swap(a->building_num, b->building_num);
@@ -25,12 +16,12 @@ void Heap::swap(Building *a, Building *b) {
 }
 
 /*!
- *
- * @param building_num
- * @param executed_time
- * @param total_time
- * @param rbtNode
- * @return
+ * Inserts a new node in min heap.
+ * @param building_num: Building number for the node to be inserted
+ * @param executed_time: Total executed time of the newly inserted building
+ * @param total_time: Time it takes to complete completion of the newly inserted building
+ * @param rbtNode: Reference to the node in red black treee
+ * @return: Returns the inserted building node from min heap
  */
 Building *Heap::insert(int building_num, int executed_time, int total_time, Node *rbtNode) {
 
@@ -62,14 +53,27 @@ Building *Heap::insert(int building_num, int executed_time, int total_time, Node
     return &root[insert_pos];
 }
 
+/*!
+ * Returns index to the left child of a given parent node index x
+ * @param x parent node index
+ * @return left child node index
+ */
 int Heap::left_child(int x) {
     return x * 2;
 }
 
+/*!
+ * Returns index to the right child of the given parent node index x
+ * @param x parent node index
+ * @return right child node index
+ */
 int Heap::right_child(int x) {
     return x * 2 + 1;
 }
 
+/*!
+ * Performs a heapify operation on the min heap
+ */
 void Heap::heapify() {
     int x = 1;
     int parent;
@@ -105,7 +109,7 @@ void Heap::heapify() {
 
 
 /*!
- *
+ * Removes the top element from the min heap(i.e minimum element from the min heap)
  * @return Minimum value removed from heap
  */
 struct Building *Heap::removeMin() {

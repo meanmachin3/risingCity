@@ -1,4 +1,6 @@
-
+/*!
+ * Constructor
+ */
 City::City() {
     global_time = 0;
     heap = new Heap(MAX_SIZE);
@@ -7,6 +9,10 @@ City::City() {
 //    time_to_work = 0;
 }
 
+/*!
+ * Getter method to fetch the current global timer
+ * @return Current global timer
+ */
 int City::getGlobalTime() {
     return global_time;
 }
@@ -26,6 +32,13 @@ int City::getGlobalTime() {
 //    global_time += time;
 //}
 
+/*!
+ * Updates global timer based on the newly scanned input line. If the current time is greater than the global timer, performs
+ * works on the building with minimum executed time for 5 days or till the completion date of the building(whichever
+ * is the earliest). Once the building is processed, it updates the global timer to the current time that was read.
+ *
+ * @param current_time Time of the newly parsed string
+ */
 void City::updateGlobalTimer(int current_time) {
     int time_to_work;
     // There's a entry for a new job

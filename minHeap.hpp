@@ -24,9 +24,7 @@ public:
 	
 	void heapify();
 
-	Heap(int);
-	
-	void updateMin(int);
+    Heap(int);
 
 	int left_child(int);
 

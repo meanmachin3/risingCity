@@ -25,8 +25,8 @@ int main(int argc, char *argv[]) {
     if (argc < 2) {
         std::cerr << "Invalid argument count" << '\n';
         std::cout << "Usage: ./risingCity filename.txt" << '\n';
-//        exit(1);
-        file.open("input.txt");
+        exit(1);
+//        file.open("input.txt");
     } else {
         file.open(argv[1]);
     }
